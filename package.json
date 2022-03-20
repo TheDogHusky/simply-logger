@@ -1,0 +1,11 @@
+{
+    "name": "simply-logger",
+    "version": "0.1.12",
+    "description": "A simple package to create a simple logger.",
+    "keyworks": ["logger", "simple", "easy", "simplylogger", "simply-logger"],
+    "dependencies": {
+        "chalk": "^4.1.0",
+        "moment": "^2.29.1",
+        "moment-timezone": "^0.5.34"
+    }
+}

@@ -1,8 +1,23 @@
 {
     "name": "simply-logger",
-    "version": "0.1.12",
+    "version": "0.1.13",
     "description": "A simple package to create a simple logger.",
     "keywords": ["logger", "simple", "easy", "simplylogger", "simply-logger"],
+    "homepage": "https://github.com/TheDogHusky/simply-logger",
+    "bugs": {
+        "url": "https://github.com/TheDogHusky/simply-logger/issues",
+        "email": "classy.craft3r@gmail.com"
+    },
+    "license": "GNU 3.0",
+    "author": {
+        "name": "ClassyCrafter",
+        "email": "classy.craft3r@gmail.com",
+        "url": "https://classy.worldwildmc.fr"
+    },
+    "repository": {
+        "url": "https://github.com/TheDogHusky/simply-logger",
+        "type": "git"
+    },
     "dependencies": {
         "chalk": "^4.1.0",
         "moment": "^2.29.1",

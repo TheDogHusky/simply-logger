@@ -1,2 +1,2 @@
 # simply-logger
-A simple logger.
+> A simple logger.

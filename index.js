@@ -20,7 +20,7 @@ function isValidTimeZone(tz) {
 
 //let's initialize the logger!
 class Logger {
-	constructor(name, timezone, format) {
+	constructor(name, timezone, format = 24) {
 		//use ("name", "timezone", "format")
 		this.name = name;
 		this.timezone = timezone;

@@ -1,7 +1,10 @@
+'use-strict';
+
 const chalk = require('chalk');
 const moment = require('moment');
 const tz = require('moment-timezone')
 
+//The valid timezone function
 function isValidTimeZone(tz) {
     if (!Intl || !Intl.DateTimeFormat().resolvedOptions().timeZone) {
         throw new Error('Time zones are not available in this environment');
@@ -16,6 +19,8 @@ function isValidTimeZone(tz) {
     };
 };
 
+
+//let's initialize the logger!
 class Logger {
     constructor(name, timezone) {
         this.name = name;
@@ -43,4 +48,5 @@ class Logger {
     }
 };
 
+//exporting
 module.exports.Logger = Logger;

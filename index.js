@@ -41,36 +41,19 @@ class Logger {
 
 	info(text) {
 		console.log(
-
 			`${chalk.cyan(this.date)}${chalk.gray(` - `)}${chalk.blue("[")}${chalk.cyanBright(`${this.name}`)}${chalk.blue("]")} ${chalk.green("Info")} ${chalk.gray("▪")} ${chalk.greenBright(text)}`
-			`${chalk.cyan(this.date)}${chalk.gray(` - `)}${chalk.blue(
-				"["
-			)}${chalk.cyanBright(`${this.name}`)}${chalk.blue("]")} ${chalk.green(
-				"Info"
-			)} ${chalk.gray("▪")} ${chalk.greenBright(text)}`
-
 		);
 	}
 
 	warn(text) {
 		console.log(
 			`${chalk.cyan(this.date)}${chalk.gray(` - `)}${chalk.blue("[")}${chalk.cyanBright(`${this.name}`)}${chalk.blue("]")} ${chalk.yellow("Warn")} ${chalk.gray("▪")} ${chalk.yellowBright(text)}`
-			`${chalk.cyan(this.date)}${chalk.gray(` - `)}${chalk.blue(
-				"["
-			)}${chalk.cyanBright(`${this.name}`)}${chalk.blue("]")} ${chalk.yellow(
-				"Warn"
-			)} ${chalk.gray("▪")} ${chalk.yellowBright(text)}`
 		);
 	}
 
 	error(text) {
 		console.log(
 			`${chalk.cyan(this.date)}${chalk.gray(` - `)}${chalk.blue("[")}${chalk.cyanBright(`${this.name}`)}${chalk.blue("]")} ${chalk.red("Error")} ${chalk.gray("▪")} ${chalk.redBright(text)}`
-			`${chalk.cyan(this.date)}${chalk.gray(` - `)}${chalk.blue(
-				"["
-			)}${chalk.cyanBright(`${this.name}`)}${chalk.blue("]")} ${chalk.red(
-				"Error"
-			)} ${chalk.gray("▪")} ${chalk.redBright(text)}`
 		);
 	}
 }

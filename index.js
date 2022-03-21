@@ -9,10 +9,6 @@ function isValidTimeZone(tz) {
 	if (!Intl || !Intl.DateTimeFormat().resolvedOptions().timeZone) {
 		throw new Error("Time zones are not available in this environment");
 	}
-<<<<<<< HEAD
-=======
-
->>>>>>> b99ccf0eff93bb30f812e885900e851c4f93cd3f
 	try {
 		Intl.DateTimeFormat(undefined, { timeZone: tz });
 		return true;
@@ -45,43 +41,36 @@ class Logger {
 
 	info(text) {
 		console.log(
-<<<<<<< HEAD
+
 			`${chalk.cyan(this.date)}${chalk.gray(` - `)}${chalk.blue("[")}${chalk.cyanBright(`${this.name}`)}${chalk.blue("]")} ${chalk.green("Info")} ${chalk.gray("▪")} ${chalk.greenBright(text)}`
-=======
 			`${chalk.cyan(this.date)}${chalk.gray(` - `)}${chalk.blue(
 				"["
 			)}${chalk.cyanBright(`${this.name}`)}${chalk.blue("]")} ${chalk.green(
 				"Info"
 			)} ${chalk.gray("▪")} ${chalk.greenBright(text)}`
->>>>>>> b99ccf0eff93bb30f812e885900e851c4f93cd3f
+
 		);
 	}
 
 	warn(text) {
 		console.log(
-<<<<<<< HEAD
 			`${chalk.cyan(this.date)}${chalk.gray(` - `)}${chalk.blue("[")}${chalk.cyanBright(`${this.name}`)}${chalk.blue("]")} ${chalk.yellow("Warn")} ${chalk.gray("▪")} ${chalk.yellowBright(text)}`
-=======
 			`${chalk.cyan(this.date)}${chalk.gray(` - `)}${chalk.blue(
 				"["
 			)}${chalk.cyanBright(`${this.name}`)}${chalk.blue("]")} ${chalk.yellow(
 				"Warn"
 			)} ${chalk.gray("▪")} ${chalk.yellowBright(text)}`
->>>>>>> b99ccf0eff93bb30f812e885900e851c4f93cd3f
 		);
 	}
 
 	error(text) {
 		console.log(
-<<<<<<< HEAD
 			`${chalk.cyan(this.date)}${chalk.gray(` - `)}${chalk.blue("[")}${chalk.cyanBright(`${this.name}`)}${chalk.blue("]")} ${chalk.red("Error")} ${chalk.gray("▪")} ${chalk.redBright(text)}`
-=======
 			`${chalk.cyan(this.date)}${chalk.gray(` - `)}${chalk.blue(
 				"["
 			)}${chalk.cyanBright(`${this.name}`)}${chalk.blue("]")} ${chalk.red(
 				"Error"
 			)} ${chalk.gray("▪")} ${chalk.redBright(text)}`
->>>>>>> b99ccf0eff93bb30f812e885900e851c4f93cd3f
 		);
 	}
 }

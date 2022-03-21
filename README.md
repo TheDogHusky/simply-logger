@@ -45,3 +45,4 @@ myLogger.error("Oh sh*t... an error...");
 > Use the packages as your wishes.
 > If you find any bugs, please repport them at https://github.com/TheDogHusky/simply-logger/issues
 > A suggestion? Send me an email or open an issue with the suggestion label!
+> WE ARE NOT RESPONSIBLE FOR WHAT YOU DO WITH THE PACKAGE!

@@ -38,7 +38,7 @@ myLogger.warn("A warn...");
 // Example error
 myLogger.error("Oh sh*t... an error...");
 ```
-
+> <img src="https://cdn.discordapp.com/attachments/670181225477963776/955521229983481877/unknown.png"/>
 ## Additionnal Informations
 
 > This package is under GNU Public Licence 3.0.

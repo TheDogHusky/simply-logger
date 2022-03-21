@@ -9,10 +9,6 @@ function isValidTimeZone(tz) {
 	if (!Intl || !Intl.DateTimeFormat().resolvedOptions().timeZone) {
 		throw new Error("Time zones are not available in this environment");
 	}
-<<<<<<< HEAD
-=======
-
->>>>>>> b99ccf0eff93bb30f812e885900e851c4f93cd3f
 	try {
 		Intl.DateTimeFormat(undefined, { timeZone: tz });
 		return true;

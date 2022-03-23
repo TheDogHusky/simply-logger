@@ -1,6 +1,6 @@
 {
     "name": "simply-logger",
-    "version": "0.2.25",
+    "version": "0.3.25",
     "description": "A simple package to create a simple logger.",
     "keywords": ["logger", "simple", "easy", "simplylogger", "simply-logger", "customisable"],
     "homepage": "https://github.com/TheDogHusky/simply-logger",

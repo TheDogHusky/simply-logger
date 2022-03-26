@@ -3,14 +3,14 @@
 /**
  * @name Simply-Logger
  * @author ClassyCrafter
- * @version 0.3.26
+ * @version 0.3.27
  * @license GNU-3.0
  */
 
 const chalk = require("chalk");
 const moment = require("moment");
 const tz = require("moment-timezone");
-//const fs = require('fs');
+const fs = require('fs');
 
 //The valid timezone function
 /**
@@ -45,13 +45,12 @@ class Logger {
 	 * 
 	 * const myLogger = new Logger("MyLogger", "Europe/Paris", 24, "./logs");
 	 */
-	constructor(name, timezone, format = 24/*, dir = null for future update*/) {
+	constructor(name, timezone, format = 24, path = null) {
 		//use ("name", "timezone", "format")
 		this.name = name;
 		this.timezone = timezone;
 		this.format = Number(format); // 12 or 24
-		//this.dir = dir; - Future Update
-
+		this.path = path;
 		if (!isValidTimeZone(String(timezone)))
 			throw new Error(`The timezone ${timezone} is invalid.`);
 		var d = new Date();
@@ -64,6 +63,10 @@ class Logger {
 		if (this.format === 24) date = date24;
 
 		this.date = date;
+		if(this.path === null) return;
+		this.filepath = this.path.join(this.path, `${this.name}.log`);
+
+		if(!fs.existsSync(this.path)) throw new Error("The specified path does not exists.");
 	}
 	/**
 	 * 
@@ -97,21 +100,21 @@ class Logger {
 	 * @param {String} text The text to log without colors.
 	 */
 	noColorsInfo(text) {
-		console.log(`${this.date} - [${this.name}] Info ▪ ${text}`)
+		console.log(`${this.date} - [${this.name}] Info ▪ ${text}`);
 	}
 	/**
 	 * 
 	 * @param {String} text The text to log without colors.
 	 */
 	 noColorsWarn(text) {
-		console.log(`${this.date} - [${this.name}] Warn ▪ ${text}`)
+		console.log(`${this.date} - [${this.name}] Warn ▪ ${text}`);
 	}
 	/**
 	 * 
 	 * @param {String} text The text to log without colors.
 	 */
 	 noColorsError(text) {
-		console.log(`${this.date} - [${this.name}] Error ▪ ${text}`)
+		console.log(`${this.date} - [${this.name}] Error ▪ ${text}`);
 	}
 
 }

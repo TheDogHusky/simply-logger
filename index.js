@@ -40,17 +40,19 @@ class Logger {
 	 * @param {String} name The name of the Logger. Will be logged as [name]
 	 * @param {String} timezone The timezone of the Logger. See https://gist.github.com/diogocapela/12c6617fc87607d11fd62d2a4f42b02a for a full list of timezones.
 	 * @param {Number} format The hour format of the Logger. It's a Number, put 12 or 24. 12 = AM/PM hour format. 24 = 24hours format.
-	 * @param {String} dir The directory to create logs in
+	 * @param {String} path The path to the directory to create logs in
+	 * @param {String} writeLogs If the Logger writes logs in a file
 	 * @example const { Logger } = require('simply-logger');
 	 * 
 	 * const myLogger = new Logger("MyLogger", "Europe/Paris", 24, "./logs");
 	 */
-	constructor(name, timezone, format = 24, path = null) {
+	constructor(name, timezone, format = 24, path = null, writeLogs = false) {
 		//use ("name", "timezone", "format")
 		this.name = name;
 		this.timezone = timezone;
 		this.format = Number(format); // 12 or 24
 		this.path = path;
+		this.writeLogs = writeLogs;
 		if (!isValidTimeZone(String(timezone)))
 			throw new Error(`The timezone ${timezone} is invalid.`);
 		var d = new Date();
@@ -63,10 +65,11 @@ class Logger {
 		if (this.format === 24) date = date24;
 
 		this.date = date;
+		if(this.writeLogs === false) return;
 		if(this.path === null) return;
-		this.filepath = this.path.join(this.path, `${this.name}.log`);
-
 		if(!fs.existsSync(this.path)) throw new Error("The specified path does not exists.");
+		this.filepath = this.path.join(this.path, `${this.name}.log`);
+		
 	}
 	/**
 	 * 

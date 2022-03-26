@@ -1,4 +1,15 @@
-# Simply-Logger
+<div align="center">
+  <br />
+  <p>
+    <a href="https://discord.js.org"><img src="https://cdn.discordapp.com/attachments/670181225477963776/957201328835293204/simply-logger_final.png" width="546" alt="ram-api.js" /></a>
+  </p>
+  <br />
+  <p>
+    <a href="https://discord.gg/bFVr8K2Qv8"><img src="https://img.shields.io/discord/605900262581993472?color=5865F2&logo=discord&logoColor=white" alt="Discord Server" /></a>
+    <a href="https://www.npmjs.com/package/simply-logger"><img src="https://img.shields.io/npm/v/simply-logger.svg?maxAge=3600" alt="npm version" /></a>
+    <a href="https://www.npmjs.com/package/simply-logger"><img src="https://img.shields.io/npm/dt/simply-logger.svg?maxAge=3600" alt="npm downloads" /></a>
+  </p>
+</div>
 
 > A simple logger using Chalk 4.1.0 and Moment.
 

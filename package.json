@@ -2,7 +2,14 @@
     "name": "simply-logger",
     "version": "0.3.26",
     "description": "A simple package to create a simple logger.",
-    "keywords": ["logger", "simple", "easy", "simplylogger", "simply-logger", "customisable"],
+    "keywords": [
+        "logger",
+        "simple",
+        "easy",
+        "simplylogger",
+        "simply-logger",
+        "customisable"
+    ],
     "homepage": "https://github.com/TheDogHusky/simply-logger",
     "bugs": {
         "url": "https://github.com/TheDogHusky/simply-logger/issues",
@@ -18,12 +25,15 @@
         "url": "https://github.com/TheDogHusky/simply-logger",
         "type": "git"
     },
-    "contributors": [{
-        "name": "Gamearoo",
-        "url": "https://gamearoodev.com"
-    }],
+    "contributors": [
+        {
+            "name": "Gamearoo",
+            "url": "https://gamearoodev.com"
+        }
+    ],
     "dependencies": {
         "chalk": "^4.1.0",
+        "fs": "^0.0.1-security",
         "moment": "^2.29.1",
         "moment-timezone": "^0.5.34"
     }

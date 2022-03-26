@@ -11,6 +11,7 @@ const chalk = require("chalk");
 const moment = require("moment");
 const tz = require("moment-timezone");
 const fs = require('fs');
+const path = require('path');
 
 //The valid timezone function
 /**
@@ -46,12 +47,12 @@ class Logger {
 	 * 
 	 * const myLogger = new Logger("MyLogger", "Europe/Paris", 24, "./logs");
 	 */
-	constructor(name, timezone, format = 24, path = null, writeLogs = false) {
+	constructor(name, timezone, format = 24, dirpath = null, writeLogs = false) {
 		//use ("name", "timezone", "format")
 		this.name = name;
 		this.timezone = timezone;
 		this.format = Number(format); // 12 or 24
-		this.path = path;
+		this.dirpath = dirpath;
 		this.writeLogs = writeLogs;
 		if (!isValidTimeZone(String(timezone)))
 			throw new Error(`The timezone ${timezone} is invalid.`);
@@ -66,9 +67,9 @@ class Logger {
 
 		this.date = date;
 		if(this.writeLogs === false) return;
-		if(this.path === null) return;
-		if(!fs.existsSync(this.path)) throw new Error("The specified path does not exists.");
-		this.filepath = this.path.join(this.path, `${this.name}.log`);
+		if(this.dirpath === null) return;
+		if(!fs.existsSync(this.dirpath)) throw new Error("The specified path does not exists.");
+		this.filepath = path.join(this.dirpath, `${this.name}.log`);
 	}
 	/**
 	 * 

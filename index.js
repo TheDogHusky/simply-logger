@@ -54,6 +54,12 @@ class Logger {
 
 		if (!isValidTimeZone(String(timezone)))
 			throw new Error(`The timezone ${timezone} is invalid.`);
+	}
+	/**
+	 *
+	 * @param {String} text The text to log as an info.
+	 */
+	info(text) {
 		var d = new Date();
 		var date24 = moment(d).tz(String(this.timezone)).format("HH:mm:ss"); // 24 hour format
 		var date12 = moment(d).tz(String(this.timezone)).format("hh:mm:ss A"); // 12 hour format
@@ -62,16 +68,8 @@ class Logger {
 
 		if (this.format === 12) date = date12;
 		if (this.format === 24) date = date24;
-
-		this.date = date;
-	}
-	/**
-	 *
-	 * @param {String} text The text to log as an info.
-	 */
-	info(text) {
 		console.log(
-			`${chalk.cyan(this.date)}${chalk.gray(` - `)}${chalk.blue(
+			`${chalk.cyan(date)}${chalk.gray(` - `)}${chalk.blue(
 				"["
 			)}${chalk.cyanBright(`${this.name}`)}${chalk.blue("]")} ${chalk.green(
 				"Info"
@@ -83,8 +81,16 @@ class Logger {
 	 * @param {String} text The text to log as a warn.
 	 */
 	warn(text) {
+		var d = new Date();
+		var date24 = moment(d).tz(String(this.timezone)).format("HH:mm:ss"); // 24 hour format
+		var date12 = moment(d).tz(String(this.timezone)).format("hh:mm:ss A"); // 12 hour format
+
+		let date = date24;
+
+		if (this.format === 12) date = date12;
+		if (this.format === 24) date = date24;
 		console.log(
-			`${chalk.cyan(this.date)}${chalk.gray(` - `)}${chalk.blue(
+			`${chalk.cyan(date)}${chalk.gray(` - `)}${chalk.blue(
 				"["
 			)}${chalk.cyanBright(`${this.name}`)}${chalk.blue("]")} ${chalk.yellow(
 				"Warn"
@@ -96,8 +102,16 @@ class Logger {
 	 * @param {String} text The text to log as an error.
 	 */
 	error(text) {
+		var d = new Date();
+		var date24 = moment(d).tz(String(this.timezone)).format("HH:mm:ss"); // 24 hour format
+		var date12 = moment(d).tz(String(this.timezone)).format("hh:mm:ss A"); // 12 hour format
+
+		let date = date24;
+
+		if (this.format === 12) date = date12;
+		if (this.format === 24) date = date24;
 		console.log(
-			`${chalk.cyan(this.date)}${chalk.gray(` - `)}${chalk.blue(
+			`${chalk.cyan(date)}${chalk.gray(` - `)}${chalk.blue(
 				"["
 			)}${chalk.cyanBright(`${this.name}`)}${chalk.blue("]")} ${chalk.red(
 				"Error"
@@ -109,21 +123,45 @@ class Logger {
 	 * @param {String} text The text to log without colors.
 	 */
 	noColorsInfo(text) {
-		console.log(`${this.date} - [${this.name}] Info ▪ ${text}`);
+		var d = new Date();
+		var date24 = moment(d).tz(String(this.timezone)).format("HH:mm:ss"); // 24 hour format
+		var date12 = moment(d).tz(String(this.timezone)).format("hh:mm:ss A"); // 12 hour format
+
+		let date = date24;
+
+		if (this.format === 12) date = date12;
+		if (this.format === 24) date = date24;
+		console.log(`${date} - [${this.name}] Info ▪ ${text}`);
 	}
 	/**
 	 *
 	 * @param {String} text The text to log without colors.
 	 */
 	noColorsWarn(text) {
-		console.log(`${this.date} - [${this.name}] Warn ▪ ${text}`);
+		var d = new Date();
+		var date24 = moment(d).tz(String(this.timezone)).format("HH:mm:ss"); // 24 hour format
+		var date12 = moment(d).tz(String(this.timezone)).format("hh:mm:ss A"); // 12 hour format
+
+		let date = date24;
+
+		if (this.format === 12) date = date12;
+		if (this.format === 24) date = date24;
+		console.log(`${date} - [${this.name}] Warn ▪ ${text}`);
 	}
 	/**
 	 *
 	 * @param {String} text The text to log without colors.
 	 */
 	noColorsError(text) {
-		console.log(`${this.date} - [${this.name}] Error ▪ ${text}`);
+		var d = new Date();
+		var date24 = moment(d).tz(String(this.timezone)).format("HH:mm:ss"); // 24 hour format
+		var date12 = moment(d).tz(String(this.timezone)).format("hh:mm:ss A"); // 12 hour format
+
+		let date = date24;
+
+		if (this.format === 12) date = date12;
+		if (this.format === 24) date = date24;
+		console.log(`${date} - [${this.name}] Error ▪ ${text}`);
 	}
 }
 

@@ -3,7 +3,7 @@
 /**
  * @name Simply-Logger
  * @author ClassyCrafter
- * @version 1.3.27
+ * @version 0.3.27
  * @license GNU-3.0
  */
 
@@ -56,16 +56,19 @@ class Logger {
 		this.writeLogs = writeLogs;
 		if (!isValidTimeZone(String(timezone)))
 			throw new Error(`The timezone ${timezone} is invalid.`);
-		var d = new Date();
-		var date24 = moment(d).tz(String(this.timezone)).format("HH:mm:ss"); // 24 hour format
-		var date12 = moment(d).tz(String(this.timezone)).format("hh:mm:ss A"); // 12 hour format
+		this.refreshDates = () => {
+			var d = new Date();
+			var date24 = moment(d).tz(String(this.timezone)).format("HH:mm:ss"); // 24 hour format
+			var date12 = moment(d).tz(String(this.timezone)).format("hh:mm:ss A"); // 12 hour format
 
-		let date = date24;
+			let date = date24;
 
-		if (this.format === 12) date = date12;
-		if (this.format === 24) date = date24;
+			if (this.format === 12) date = date12;
+			if (this.format === 24) date = date24;
 
-		this.date = date;
+			this.date = date;
+		}
+		this.refreshDates()
 		if(this.writeLogs === false) return;
 		if(this.dirpath === null) return;
 		if(!fs.existsSync(this.dirpath)) throw new Error("The specified path does not exists.");
@@ -76,6 +79,7 @@ class Logger {
 	 * @param {String} text The text to log as an info.
 	 */
 	info(text) {
+		this.refreshDates()
 		console.log(
 			`${chalk.cyan(this.date)}${chalk.gray(` - `)}${chalk.blue("[")}${chalk.cyanBright(`${this.name}`)}${chalk.blue("]")} ${chalk.green("Info")} ${chalk.gray("▪")} ${chalk.greenBright(text)}`
 		);
@@ -92,6 +96,7 @@ class Logger {
 	 * @param {String} text The text to log as a warn.
 	 */
 	warn(text) {
+		this.refreshDates()
 		console.log(
 			`${chalk.cyan(this.date)}${chalk.gray(` - `)}${chalk.blue("[")}${chalk.cyanBright(`${this.name}`)}${chalk.blue("]")} ${chalk.yellow("Warn")} ${chalk.gray("▪")} ${chalk.yellowBright(text)}`
 		);
@@ -108,6 +113,7 @@ class Logger {
 	 * @param {String} text The text to log as an error.
 	 */
 	error(text) {
+		this.refreshDates()
 		console.log(
 			`${chalk.cyan(this.date)}${chalk.gray(` - `)}${chalk.blue("[")}${chalk.cyanBright(`${this.name}`)}${chalk.blue("]")} ${chalk.red("Error")} ${chalk.gray("▪")} ${chalk.redBright(text)}`
 		);
@@ -124,6 +130,7 @@ class Logger {
 	 * @param {String} text The text to log without colors.
 	 */
 	noColorsInfo(text) {
+		this.refreshDates()
 		console.log(`${this.date} - [${this.name}] Info ▪ ${text}`);
 		if(this.writeLogs === false) return;
 		const formattedMessage = `${this.date} - [${this.name}] Info ▪ ${text}`
@@ -138,6 +145,7 @@ class Logger {
 	 * @param {String} text The text to log without colors.
 	 */
 	 noColorsWarn(text) {
+		this.refreshDates()
 		console.log(`${this.date} - [${this.name}] Warn ▪ ${text}`);
 		if(this.writeLogs === false) return;
 		const formattedMessage = `${this.date} - [${this.name}] Warn ▪ ${text}`
@@ -152,6 +160,7 @@ class Logger {
 	 * @param {String} text The text to log without colors.
 	 */
 	 noColorsError(text) {
+		this.refreshDates()
 		console.log(`${this.date} - [${this.name}] Error ▪ ${text}`);
 		if(this.writeLogs === false) return;
 		const formattedMessage = `${this.date} - [${this.name}] Error ▪ ${text}`

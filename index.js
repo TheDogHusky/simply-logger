@@ -3,7 +3,7 @@
 /**
  * @name Simply-Logger
  * @author ClassyCrafter
- * @version 0.3.27
+ * @version 1.3.27
  * @license GNU-3.0
  */
 

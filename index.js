@@ -69,7 +69,6 @@ class Logger {
 		if(this.path === null) return;
 		if(!fs.existsSync(this.path)) throw new Error("The specified path does not exists.");
 		this.filepath = this.path.join(this.path, `${this.name}.log`);
-		
 	}
 	/**
 	 * 
@@ -79,6 +78,13 @@ class Logger {
 		console.log(
 			`${chalk.cyan(this.date)}${chalk.gray(` - `)}${chalk.blue("[")}${chalk.cyanBright(`${this.name}`)}${chalk.blue("]")} ${chalk.green("Info")} ${chalk.gray("▪")} ${chalk.greenBright(text)}`
 		);
+		if(this.writeLogs === false) return;
+		const formattedMessage = `${this.date} - [${this.name}] Info ▪ ${text}`
+		fs.appendFile(this.filepath, formattedMessage + '\n', (err) => {
+			if (err) {
+				throw new Error(err)
+			}
+		});
 	}
 	/**
 	 * 
@@ -88,6 +94,13 @@ class Logger {
 		console.log(
 			`${chalk.cyan(this.date)}${chalk.gray(` - `)}${chalk.blue("[")}${chalk.cyanBright(`${this.name}`)}${chalk.blue("]")} ${chalk.yellow("Warn")} ${chalk.gray("▪")} ${chalk.yellowBright(text)}`
 		);
+		if(this.writeLogs === false) return;
+		const formattedMessage = `${this.date} - [${this.name}] Warn ▪ ${text}`
+		fs.appendFile(this.filepath, formattedMessage + '\n', (err) => {
+			if (err) {
+				throw new Error(err)
+			}
+		});
 	}
 	/**
 	 * 
@@ -97,6 +110,13 @@ class Logger {
 		console.log(
 			`${chalk.cyan(this.date)}${chalk.gray(` - `)}${chalk.blue("[")}${chalk.cyanBright(`${this.name}`)}${chalk.blue("]")} ${chalk.red("Error")} ${chalk.gray("▪")} ${chalk.redBright(text)}`
 		);
+		if(this.writeLogs === false) return;
+		const formattedMessage = `${this.date} - [${this.name}] Error ▪ ${text}`
+		fs.appendFile(this.filepath, formattedMessage + '\n', (err) => {
+			if (err) {
+				throw new Error(err)
+			}
+		});
 	}
 	/**
 	 * 
@@ -104,6 +124,13 @@ class Logger {
 	 */
 	noColorsInfo(text) {
 		console.log(`${this.date} - [${this.name}] Info ▪ ${text}`);
+		if(this.writeLogs === false) return;
+		const formattedMessage = `${this.date} - [${this.name}] Info ▪ ${text}`
+		fs.appendFile(this.filepath, formattedMessage + '\n', (err) => {
+			if (err) {
+				throw new Error(err)
+			}
+		});
 	}
 	/**
 	 * 
@@ -111,6 +138,13 @@ class Logger {
 	 */
 	 noColorsWarn(text) {
 		console.log(`${this.date} - [${this.name}] Warn ▪ ${text}`);
+		if(this.writeLogs === false) return;
+		const formattedMessage = `${this.date} - [${this.name}] Warn ▪ ${text}`
+		fs.appendFile(this.filepath, formattedMessage + '\n', (err) => {
+			if (err) {
+				throw new Error(err)
+			}
+		});
 	}
 	/**
 	 * 
@@ -118,6 +152,13 @@ class Logger {
 	 */
 	 noColorsError(text) {
 		console.log(`${this.date} - [${this.name}] Error ▪ ${text}`);
+		if(this.writeLogs === false) return;
+		const formattedMessage = `${this.date} - [${this.name}] Error ▪ ${text}`
+		fs.appendFile(this.filepath, formattedMessage + '\n', (err) => {
+			if (err) {
+				throw new Error(err)
+			}
+		});
 	}
 
 }

@@ -1,6 +1,6 @@
 {
     "name": "simply-logger",
-    "version": "1.3.27",
+    "version": "1.3.37",
     "description": "A simple package to create a simple logger.",
     "keywords": [
         "logger",

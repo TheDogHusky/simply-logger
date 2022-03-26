@@ -21,12 +21,20 @@
 npm i simply-logger
 ```
 
-> Update
+> Old update
 
 ```js
 const myLogger = new simplylogger.Logger("MyLogger", "Europe/Paris");
 //to
 const myLogger = new simplylogger.Logger("MyLogger", "Europe/Paris", 12); //12 or 24  12 = Am/ PM 24 = 24 hour clock
+```
+> Big new update
+```js
+const myLogger = new simplylogger.Logger("MyLogger", "Europe/Paris")
+// or
+const myLogger = new simplylogger.Logger("MyLogger", "Europe/Paris", 24)
+// to
+const myLogger = new simplylogger.Logger("MyLogger", "Europe/Paris", 24, "./somepath", true); // the "./somepath" tell the directory to put file logs in and the true says if log in files is enabled
 ```
 
 > Code example:
@@ -36,7 +44,7 @@ const myLogger = new simplylogger.Logger("MyLogger", "Europe/Paris", 12); //12 o
 const simplylogger = require("simply-logger");
 
 // creates the logger
-const myLogger = new simplylogger.Logger("MyLogger", "Europe/Paris", 24); //change 24 to 12 for AM/PM
+const myLogger = new simplylogger.Logger("MyLogger", "Europe/Paris", 24, "./some/path", true); //change 24 to 12 for AM/PM
 
 /* examples */
 

@@ -3,7 +3,7 @@
 /**
  * @name Simply-Logger
  * @author ClassyCrafter
- * @version 1.3.38
+ * @version 1.4.38
  * @license GNU-3.0
  */
 
@@ -13,23 +13,30 @@ const tz = require("moment-timezone");
 const fs = require('fs');
 const path = require('path');
 
-//The valid timezone function
+
 /**
- * 
- * @param {String} tz The timezone to verify
- * @returns Boolean true or false
+ * The utils class to use some utility functions
  */
-function isValidTimeZone(tz) {
-	if (!Intl || !Intl.DateTimeFormat().resolvedOptions().timeZone) {
-		throw new Error("Time zones are not available in this environment");
-	}
-	try {
-		Intl.DateTimeFormat(undefined, { timeZone: tz });
-		return true;
-	} catch (ex) {
-		return false;
-	}
+ class Utils {
+
+	/**
+	 * 
+	 * @param {String} timezone The timezone to verify
+	 * @returns Boolean true or false
+	 */
+	isValidTimeZone(timezone) {
+		if (!Intl || !Intl.DateTimeFormat().resolvedOptions().timeZone) {
+			throw new Error("Time zones are not available in this environment");
+		};
+		try {
+			Intl.DateTimeFormat(undefined, { timeZone: timezone });
+			return true;
+		} catch (ex) {
+			return false;
+		};
+	};
 }
+
 
 //let's initialize the logger!
 /**
@@ -54,12 +61,14 @@ class Logger {
 		this.format = Number(format); // 12 or 24
 		this.dirpath = dirpath;
 		this.writeLogs = writeLogs;
-		if (!isValidTimeZone(String(timezone)))
+		if (!Utils.prototype.isValidTimeZone(String(timezone)))
 			throw new Error(`The timezone ${timezone} is invalid.`);
+		
+		// Let's define some functions!
 		this.refreshDates = () => {
-			var d = new Date();
-			var date24 = moment(d).tz(String(this.timezone)).format("HH:mm:ss"); // 24 hour format
-			var date12 = moment(d).tz(String(this.timezone)).format("hh:mm:ss A"); // 12 hour format
+			const d = new Date();
+			const date24 = moment(d).tz(String(this.timezone)).format("HH:mm:ss"); // 24 hour format
+			const date12 = moment(d).tz(String(this.timezone)).format("hh:mm:ss A"); // 12 hour format
 
 			let date = date24;
 
@@ -67,8 +76,20 @@ class Logger {
 			if (this.format === 24) date = date24;
 
 			this.date = date;
-		}
-		this.refreshDates()
+		};
+		/**
+		 * 
+		 * @param {String} formattedMessage The formatted message to write in the logs
+		 */
+		this.writeFile = (formattedMessage) => {
+			fs.appendFile(this.filepath, formattedMessage + '\n', (err) => {
+				if (err) {
+					throw new Error(err);
+				};
+			});
+		};
+
+		this.refreshDates();
 		if(this.writeLogs === false) return;
 		if(this.dirpath === null) return;
 		if(!fs.existsSync(this.dirpath)) throw new Error("The specified path does not exists.");
@@ -79,99 +100,77 @@ class Logger {
 	 * @param {String} text The text to log as an info.
 	 */
 	info(text) {
-		this.refreshDates()
+		this.refreshDates();
 		console.log(
 			`${chalk.cyan(this.date)}${chalk.gray(` - `)}${chalk.blue("[")}${chalk.cyanBright(`${this.name}`)}${chalk.blue("]")} ${chalk.green("Info")} ${chalk.gray("▪")} ${chalk.greenBright(text)}`
 		);
 		if(this.writeLogs === false) return;
-		const formattedMessage = `${this.date} - [${this.name}] Info ▪ ${text}`
-		fs.appendFile(this.filepath, formattedMessage + '\n', (err) => {
-			if (err) {
-				throw new Error(err)
-			}
-		});
+		const formattedMessage = `${this.date} - [${this.name}] Info ▪ ${text}`;
+		this.writeFile(formattedMessage);
 	}
 	/**
 	 * 
 	 * @param {String} text The text to log as a warn.
 	 */
 	warn(text) {
-		this.refreshDates()
+		this.refreshDates();
 		console.log(
 			`${chalk.cyan(this.date)}${chalk.gray(` - `)}${chalk.blue("[")}${chalk.cyanBright(`${this.name}`)}${chalk.blue("]")} ${chalk.yellow("Warn")} ${chalk.gray("▪")} ${chalk.yellowBright(text)}`
 		);
 		if(this.writeLogs === false) return;
-		const formattedMessage = `${this.date} - [${this.name}] Warn ▪ ${text}`
-		fs.appendFile(this.filepath, formattedMessage + '\n', (err) => {
-			if (err) {
-				throw new Error(err)
-			}
-		});
+		const formattedMessage = `${this.date} - [${this.name}] Warn ▪ ${text}`;
+		this.writeFile(formattedMessage);
 	}
 	/**
 	 * 
 	 * @param {String} text The text to log as an error.
 	 */
 	error(text) {
-		this.refreshDates()
+		this.refreshDates();
 		console.log(
 			`${chalk.cyan(this.date)}${chalk.gray(` - `)}${chalk.blue("[")}${chalk.cyanBright(`${this.name}`)}${chalk.blue("]")} ${chalk.red("Error")} ${chalk.gray("▪")} ${chalk.redBright(text)}`
 		);
 		if(this.writeLogs === false) return;
-		const formattedMessage = `${this.date} - [${this.name}] Error ▪ ${text}`
-		fs.appendFile(this.filepath, formattedMessage + '\n', (err) => {
-			if (err) {
-				throw new Error(err)
-			}
-		});
+		const formattedMessage = `${this.date} - [${this.name}] Error ▪ ${text}`;
+		this.writeFile(formattedMessage);
 	}
 	/**
 	 * 
 	 * @param {String} text The text to log without colors.
 	 */
 	noColorsInfo(text) {
-		this.refreshDates()
+		this.refreshDates();
 		console.log(`${this.date} - [${this.name}] Info ▪ ${text}`);
 		if(this.writeLogs === false) return;
-		const formattedMessage = `${this.date} - [${this.name}] Info ▪ ${text}`
-		fs.appendFile(this.filepath, formattedMessage + '\n', (err) => {
-			if (err) {
-				throw new Error(err)
-			}
-		});
+		const formattedMessage = `${this.date} - [${this.name}] Info ▪ ${text}`;
+		this.writeFile(formattedMessage);
 	}
 	/**
 	 * 
 	 * @param {String} text The text to log without colors.
 	 */
 	 noColorsWarn(text) {
-		this.refreshDates()
+		this.refreshDates();
 		console.log(`${this.date} - [${this.name}] Warn ▪ ${text}`);
 		if(this.writeLogs === false) return;
-		const formattedMessage = `${this.date} - [${this.name}] Warn ▪ ${text}`
-		fs.appendFile(this.filepath, formattedMessage + '\n', (err) => {
-			if (err) {
-				throw new Error(err)
-			}
-		});
+		const formattedMessage = `${this.date} - [${this.name}] Warn ▪ ${text}`;
+		this.writeFile(formattedMessage);
 	}
 	/**
 	 * 
 	 * @param {String} text The text to log without colors.
 	 */
 	 noColorsError(text) {
-		this.refreshDates()
+		this.refreshDates();
 		console.log(`${this.date} - [${this.name}] Error ▪ ${text}`);
 		if(this.writeLogs === false) return;
-		const formattedMessage = `${this.date} - [${this.name}] Error ▪ ${text}`
-		fs.appendFile(this.filepath, formattedMessage + '\n', (err) => {
-			if (err) {
-				throw new Error(err)
-			}
-		});
+		const formattedMessage = `${this.date} - [${this.name}] Error ▪ ${text}`;
+		this.writeFile(formattedMessage);
 	}
 
 }
 
+
 //exporting
 module.exports.Logger = Logger;
+module.exports.Utils = Utils;
